@@ -1,0 +1,108 @@
+<div class="col-sm-12">
+<input type="hidden" id="oppCode" value="<%= opportunity.code %>">
+
+	<div style="background-color:rgba(0,0,0,0.6)" align="center">
+		<h1 class="opportunity_title" style="font-size:3.5em"><%= opportunity.jobTitle %></h1>
+		<h2 class="opportunity_title" style="font-size:2.5em"><%= opportunity.company %></h2>
+		<h4 class="opportunity_title" style="font-size:1.5em"><%= opportunity.jobLocation %></h4>
+	</div>
+
+	<div class="form-buttons">
+		<a id="applyBtn" href="#" class="btn btn-warning btn-lg"><%= __('apply') %></a>
+		<a id="editBtn" href="#" class="btn btn-warning btn-lg"><%= __('edit') %></a>
+		<a id="applicantsBtn" href="#" class="btn btn-warning btn-lg"><%= __('applicants') %></a>
+		<a id="allApplicantsBtn" href="#" class="btn btn-warning btn-lg"><%= __('all_applicants') %></a>
+		<a id="newOpportunityBtn" href="#" class="btn btn-warning btn-lg"><%= __('new_opportunity') %></a>
+	</div>
+	<br />
+	
+    	<button class="accordion btn-lg"><%= __('job_description') %></button>
+	<div class="panel">
+	  <p><%= opportunity.jobDescription %></p>
+	</div>
+	
+	<button class="accordion btn-lg"><%= __('job_skills') %></button>
+	<div class="panel">
+	  <p><%= opportunity.jobSkills %></p>
+	</div>
+	
+	<button class="accordion btn-lg"><%= __('compensation') %></button>
+	<div class="panel">
+	  <p><%= opportunity.compensation %></p>
+	</div> 
+	
+	<button class="accordion btn-lg"><%= __('company_description') %></button>
+	<div class="panel">
+	  <p><%= opportunity.companyDescription %></p>
+	</div> 
+	
+	<button class="accordion btn-lg"><%= __('logistics') %></button>
+	<div class="panel">
+	  <p><%= opportunity.logistics %></p>
+	</div> 
+	
+	<button class="accordion btn-lg"><%= __('cost_living') %></button>
+	<div class="panel">
+	  <p><%= opportunity.costOfLiving %></p>
+	</div> 
+		
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+var v_IsLoggedIn = <%- JSON.stringify(isLoggedIn) %>;
+var v_Code = <%- JSON.stringify(opportunity.code) %>;
+var v_JobTitle = <%- JSON.stringify(opportunity.jobTitle) %>;
+var v_Company = <%- JSON.stringify(opportunity.company) %>;
+var v_jobLocation = <%- JSON.stringify(opportunity.jobLocation) %>;
+var v_oppImage = <%- JSON.stringify(opportunity.opportunityPicture) %>;
+
+$(document).ready(function(){
+	$('body').css('background-image', 'url(images/' + v_oppImage + ')');
+	
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    }
+	  }
+	}
+	
+	if(v_IsLoggedIn) {
+		$("#applyBtn").hide();
+	} else {
+		$("#editBtn").hide();
+		$("#applicantsBtn").hide();
+		$("#allApplicantsBtn").hide();
+		$("#newOpportunityBtn").hide();
+	}
+	
+	$("#applyBtn").click(function() {    
+	    var url = '/applyToOpp?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company;
+	    PopupCenter(url, '_blank',650,600);
+	});
+	
+	$("#editBtn").click(function() {
+	    window.location = '/registerOpportunity?oppCode=' + v_Code;
+	});
+	
+	$("#applicantsBtn").click(function() {
+	    window.location = '/viewApplicants?oppCode=' + v_Code + '&jobTitle=' + v_JobTitle + '&company=' + v_Company + '&jobLocation=' + v_jobLocation;
+	});
+	
+	$("#allApplicantsBtn").click(function() {
+	    window.location = '/viewApplicants';
+	});
+	
+	$("#newOpportunityBtn").click(function() {
+	    window.location = '/registerOpportunity';
+	});
+});
+
+</script>
+

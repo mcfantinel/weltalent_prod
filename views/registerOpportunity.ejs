@@ -1,0 +1,186 @@
+<div class="col-sm-12" align="center">
+
+	<h1 class="form_title"><%= __('register_opportunity') %></h1>
+
+	<!-- show any messages that come back with authentication -->
+	<% if (message.length > 0) { %>
+		<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+
+	<!-- Register Opportunity FORM -->
+	<form id="registerOpp" class="form-horizontal" action="/registerOpportunity" method="post" encType="multipart/form-data">
+		<input type="hidden" id="oppCode" name="oppCode">
+		<div class="form-buttons">
+			<button type="submit" class="btn btn-warning btn-lg"><%= __('save') %></button>
+			<button type="reset" class="btn btn-warning btn-lg"><%= __('reset') %></button>
+		</div>
+		<br />
+		<div class="form-group">
+			<label for="compName" class="col-sm-3 control-label form_label"><%= __('company_name') %>: </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="compName" name="compName">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="jobTitle" class="col-sm-3 control-label form_label"><%= __('job_title') %>: </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="jobTitle" name="jobTitle">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="jobCityCountry" class="col-sm-3 control-label form_label"><%= __('job_city') %> - <%= __('country') %>: </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="jobCityCountry"  name="jobCityCountry">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="jobDescription" class="col-sm-3 control-label form_label"><%= __('job_description') %>: </label>
+			<div class="col-sm-8">
+				<textarea class="form-control" rows="5" id="jobDescription" name="jobDescription"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="jobSkills" class="col-sm-3 control-label form_label"><%= __('job_skills') %>: </label>
+			<div class="col-sm-8">
+				<textarea class="form-control" rows="5" id="jobSkills" name="jobSkills"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="jobCompensation" class="col-sm-3 control-label form_label"><%= __('compensation') %>: </label>
+			<div class="col-sm-8">
+				<textarea class="form-control" rows="5" id="jobCompensation" name="jobCompensation"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="compDescription" class="col-sm-3 control-label form_label"><%= __('company_description') %>: </label>
+			<div class="col-sm-8">
+				<textarea class="form-control" rows="5" id="compDescription" name="compDescription"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="logistics" class="col-sm-3 control-label form_label"><%= __('logistics') %>: </label>
+			<div class="col-sm-8">
+				<textarea class="form-control" rows="5" id="logistics" name="logistics"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="costOfLiving" class="col-sm-3 control-label form_label"><%= __('cost_living') %>: </label>
+			<div class="col-sm-8">
+				<textarea class="form-control" rows="5" id="costOfLiving" name="costOfLiving"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="keywords" class="col-sm-3 control-label form_label"><%= __('keywords') %>: </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="keywords" name="keywords">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label form_label"><%= __('upload_company_logo') %>: </label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="upload-companyLogo" name="companyLogoText" readonly="readonly">
+			</div>
+			<label class="btn btn-primary col-sm-2" for="companyLogo">
+					Browse
+				    <input id="companyLogo" type="file" style="display:none" name="companyLogo"
+				    	onchange="$('#upload-companyLogo').val(this.files[0].name)">
+			</label>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label form_label"><%= __('upload_opportunity_image') %>: </label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="upload-oppImage" name="oppImageText" readonly="readonly">
+			</div>
+			<label class="btn btn-primary col-sm-2" for="oppImage">
+					Browse
+				    <input id="oppImage" type="file" style="display:none" name="oppImage"
+				    	onchange="$('#upload-oppImage').val(this.files[0].name)">
+			</label>		
+		</div>
+		
+		
+	</form>
+
+</div>
+
+<script>
+var v_Code;
+
+<% if (opportunity.code) { %>
+	v_Code = <%- JSON.stringify(opportunity.code) %> || '';
+	var v_JobTitle = <%- JSON.stringify(opportunity.jobTitle) %> || '';
+	var v_Company = <%- JSON.stringify(opportunity.company) %> || '';
+	var v_jobLocation = <%- JSON.stringify(opportunity.jobLocation) %> || '';
+	var v_jobDescription = <%- JSON.stringify(opportunity.jobDescription) %> || '';
+	var v_jobSkills = <%- JSON.stringify(opportunity.jobSkills) %> || '';
+	var v_companyDescription = <%- JSON.stringify(opportunity.companyDescription) %> || '';
+	var v_compensation = <%- JSON.stringify(opportunity.compensation) %> || '';
+	var v_logistics = <%- JSON.stringify(opportunity.logistics) %> || '';
+	var v_costOfLiving = <%- JSON.stringify(opportunity.costOfLiving) %> || '';
+	var v_keywords = <%- JSON.stringify(opportunity.keywords) %> || '';
+	var v_companyLogo = <%- JSON.stringify(opportunity.companyLogo) %> || '';
+	var v_opportunityPicture = <%- JSON.stringify(opportunity.opportunityPicture) %> || '';
+<% } %>
+
+function editFields() {
+	$('#oppCode').val(v_Code);
+	$('#jobTitle').val(v_JobTitle);
+	$('#compName').val(v_Company);
+	$('#jobCityCountry').val(v_jobLocation);
+	$('#jobDescription').val(v_jobDescription);
+	$('#jobSkills').val(v_jobSkills);
+	$('#jobCompensation').val(v_companyDescription);
+	$('#compDescription').val(v_compensation);
+	$('#logistics').val(v_logistics);
+	$('#costOfLiving').val(v_costOfLiving);
+	$('#keywords').val(v_keywords);
+	$('#upload-companyLogo').val(v_companyLogo);
+	$('#upload-oppImage').val(v_opportunityPicture);
+}
+
+$(document).ready(function(){
+	if(v_Code){
+		editFields();
+	}
+	
+	$('#registerOpp').validate({ // initialize the plugin
+        rules: {
+        	compName: {
+                required: true
+            },
+            jobTitle: {
+                required: true
+            },
+            jobCityCountry: {
+                required: true
+            },
+            companyLogoText: {
+                required: true,
+                extension: "png|jpeg"
+            },
+            oppImageText: {
+                required: true,
+                extension: "png|jpeg"
+            }
+        },
+        errorElement: "em",
+		errorPlacement: function ( error, element ) {
+			// Add the `help-block` class to the error element
+			error.addClass( "help-block" );
+
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else {
+				error.insertAfter( element );
+			}
+		},
+		highlight: function ( element, errorClass, validClass ) {
+			$( element ).parents( ".col-sm-8" ).addClass( "has-error" ).removeClass( "has-success" );
+		},
+		unhighlight: function (element, errorClass, validClass) {
+			$( element ).parents( ".col-sm-8" ).addClass( "has-success" ).removeClass( "has-error" );
+		}
+    });
+});
+
+</script>

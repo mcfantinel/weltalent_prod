@@ -1,0 +1,100 @@
+<div class="col-sm-12" align="center">
+
+	<h1 class="form_title"><%= __('contact_us') %></h1>
+
+	<!-- show any messages that come back with authentication -->
+	<% if (message.length > 0) { %>
+		<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+
+	<!-- Register Opportunity FORM -->
+	<form id="contactUsForm" class="form-horizontal" action="/contactUs" method="post" encType="multipart/form-data">
+		<div class="form-group">
+			<label for="contactType" class="col-sm-3 control-label form_label"><%= __('contact_type') %>: </label>
+			<div class="col-sm-8 selectContainer">
+				<select type="text" class="selectpicker form-control" id="contactType" name="contactType">
+					<option name="" value=""></option>
+					<% for (var i = 0; i < contactSelType.length; i++) { %>	
+					<option name="" value="<%= contactSelType[i].value %>"><%= contactSelType[i].text %></option>
+					<% } %>	
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="messageTitle" class="col-sm-3 control-label form_label"><%= __('message_title') %>: </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="messageTitle" name="messageTitle">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email" class="col-sm-3 control-label form_label"><%= __('email') %>: </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="email"  name="email">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="message" class="col-sm-3 control-label form_label"><%= __('message') %>: </label>
+			<div class="col-sm-8">
+				<textarea class="form-control" rows="5" id="message" name="message"></textarea>
+			</div>
+		</div>		
+		<br />
+		<div class="form-buttons">
+			<button type="submit" class="btn btn-warning btn-lg"><%= __('submit') %></button>
+		</div>
+	</form>
+	<br />
+	<br />
+
+</div>
+
+<script>
+
+$(document).ready(function(){
+	var requestFrom = getUrlParameter('requestFrom');
+	if(requestFrom) {
+		if(requestFrom == 'employer') {
+			$("#contactType").val("employer");
+		}
+		else if(requestFrom == 'jobSeeker') {
+			$("#contactType").val("jobSeeker");
+		}
+	}
+	});
+
+	$('#contactUsForm').validate({ // initialize the plugin
+        rules: {
+        	contactType: {
+                required: true
+            },
+            messageTitle: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            message: {
+                required: true
+            }
+        },
+        errorElement: "em",
+		errorPlacement: function ( error, element ) {
+			// Add the `help-block` class to the error element
+			error.addClass( "help-block" );
+
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else {
+				error.insertAfter( element );
+			}
+		},
+		highlight: function ( element, errorClass, validClass ) {
+			$( element ).parents( ".col-sm-8" ).addClass( "has-error" ).removeClass( "has-success" );
+		},
+		unhighlight: function (element, errorClass, validClass) {
+			$( element ).parents( ".col-sm-8" ).addClass( "has-success" ).removeClass( "has-error" );
+		}
+    });
+
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include Templates/head.ejs%>
+</head>
+
+<body>
+
+<% include Templates/menu.ejs%>
+
+<br />
+
+<!-- Insert Body here -->
+<div class="container">
+
+    <div>
+        <%- body %>
+        <%- script %>
+    </div>
+
+</div><!-- /.container -->
+
+<% include Templates/footer.ejs%>
+
+</body>
+</html>

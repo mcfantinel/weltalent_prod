@@ -1,0 +1,80 @@
+<div class="col-sm-8 col-centered" align="center">
+
+		<% if (opportunity.oppCode) { %>
+			<h1 class="form_title"><%= opportunity.jobTitle %></h1>
+			<h2 class="form_title"><%= opportunity.companyName %></h2>
+			<h4 class="form_title"><%= opportunity.jobLocation %></h4>
+		<% } else { %>
+			<h1 class="form_title"><%= __('cvs_database') %></h1>
+		<% } %>
+		
+		<div class="form-buttons">
+			<button id="downloadAllCvsBtn" class="btn btn-warning btn-lg"><%= __('download_all_cvs') %></button>
+		</div>
+		
+		<br />
+		
+		<div class="list-group div-text">
+			<% for (var i = 0; i < applicants.length; i++) { %> 
+			<a href="#" onclick="dowloadPDF(<%= applicants[i].code %>)">
+			<div class="applicantsBox"> 
+				<div class="row">
+			    	<div class="col-md-6"><%= applicants[i].name %></div>
+					<div class="col-md-6 text-right"><%= applicants[i].country %></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6"><%= applicants[i].email %></div>
+					<div class="col-md-6 text-right">Applyed at <%= applicants[i].creationTime %></div>
+				</div>
+			</div>
+			</a>
+			<% } %>
+		</div>
+		<br />
+		<br />
+		
+</div>
+
+
+<script>
+var v_OppCode;
+<% if (opportunity.code) { %>
+	v_OppCode = <%- JSON.stringify(opportunity.oppCode) %>;
+<% } %>
+
+function dowloadPDF(code) {
+	/*var data = { 
+		applicantCode: code
+	};
+	
+	$.ajax({
+		type: 'POST',
+		data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: '/downloadPDF',
+        success: function(data) {
+        	var blob = new Blob([data]);
+            var link = document.createElement('a');
+            link.href=window.URL.createObjectURL(blob);
+            link.download="Dossier_"+new Date()+".pdf";
+            link.click();
+        }
+    });*/
+	
+	window.location = '/downloadPDF?applicantCode=' + code;
+}
+
+$("#downloadAllCvsBtn").click(function() {
+	if(v_OppCode) {
+		window.location = '/downloadPDF?oppCode=' + v_OppCode;
+	} else {
+		window.location = '/downloadPDF';
+	}
+});
+
+$(document).ready(function(){
+
+});
+
+</script>
+

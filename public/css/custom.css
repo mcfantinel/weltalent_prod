@@ -1,0 +1,373 @@
+body {
+    background-color: #2d73b5;
+    /*background: url(../images/background_sg.jpg) no-repeat center center scroll;*/
+    font-family: Open Sans;
+}
+
+p {
+	white-space: pre; 
+}
+
+.img-logo {
+	max-height: 70px;
+	max-width: 80px;
+}
+
+.li_right > li
+{
+    float:right;
+}
+
+.form-buttons {
+    margin: 0;
+    text-align: center;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.div-text {
+    margin: 0;
+    text-align: left;
+}
+
+.glyphicon.glyphicon-upload {
+    font-size: 50px;
+}
+
+.aboutMissionImg {
+	height: 300px;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.missionVisionBox {
+	border-radius: 25px;
+    border: 2px solid #c0c0c0;
+    padding: 10px;
+    margin-bottom:10px;
+    margin-left:5px;
+    margin-right:5px;
+    background-color: #fafafb;
+    color: black;
+    float: left;
+    width: 32%;
+    height: 350px;
+}
+
+.applicantsBox {
+	border-radius: 25px;
+    border: 2px solid #c0c0c0;
+    padding: 20px;
+    margin-bottom:10px;
+    background-color: #fafafb;
+    color: black;
+}
+
+.applicantsBox:hover {
+    background-color: #ddd;
+}
+
+.bold_italic {
+    font-weight: bold;
+	font-style: italic;
+}
+
+.form_title {
+    font-weight: bold;
+	color: white;
+}
+
+.opportunity_title {
+    font-weight: bold;
+	color: white;
+}
+
+.form_label {
+	color: white;
+}
+
+label.small-caps {
+	font-variant: small-caps;
+}
+
+/*-----------------------menu*/
+.navbar-custom {
+	margin-bottom: 0 !important;
+    background-color: #fafafb;
+    /*border-color: #080808;*/
+}
+
+.navbar-nav > li > a.menu-img-custom {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.navbar-nav > li > a.menu-custom {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-weight: bold;
+    color: #2d73b5;
+}
+/*-----------------------end_menu*/
+
+/*-----------------------footer*/
+.footer {
+	background: #fafafb;
+	height: auto;
+	padding-bottom: 30px;
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #CCCCCC;
+	border-top: 1px solid #DDDDDD;
+}
+.footer p {
+	margin: 0;
+}
+.footer img {
+	max-width: 100%;
+}
+.footer h3 {
+	border-bottom: 1px solid #BAC1C8;
+	color: #2d73b5;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 27px;
+	padding: 40px 0 10px;
+	text-transform: uppercase;
+	font-family: Open Sans;
+}
+.footer ul {
+	font-size: 13px;
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+	margin-top: 15px;
+	color: #2d73b5;
+	font-family: Open Sans;
+}
+.footer ul li a {
+	padding: 0 0 5px 0;
+	display: block;
+}
+.footer a {
+	color: #2d73b5
+}
+.supportLi h4 {
+	font-size: 20px;
+	font-weight: lighter;
+	line-height: normal;
+	margin-bottom: 0 !important;
+	padding-bottom: 0;
+}
+
+.footer-bottom {
+	background: #DCDCDC;
+	border-top: 1px solid #DDDDDD;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.footer-bottom p.pull-left {
+	padding-top: 6px;
+}
+/*-----------------------end_footer*/
+
+/*-----------------------accordion*/
+ /* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}  
+
+button.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+/*-----------------------end_accordion*/
+
+/*-----------------------listOpportunities*/
+.productbox {
+    background-color:#ffffff;
+	padding:10px;
+	margin-bottom:15px;
+	border-style: solid;
+    border-width: 5px 5px 0px 5px;
+    border-color: #2d73b5;
+	-webkit-box-shadow: 0 8px 6px -6px  #999;
+	   -moz-box-shadow: 0 8px 6px -6px  #999;
+	        box-shadow: 0 8px 6px -6px #999;
+}
+
+.producttitle {
+    /*font-weight:bold;
+	padding:5px 0 5px 0;*/
+	z-index: 100;
+	position: absolute;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	left: 25%;
+	top: 40%;
+}
+
+.productprice {
+	border-top:1px solid #dadada;
+	padding-top:5px;
+	font-size:1.2em;
+	font-family: Open Sans;
+}
+
+.pricetext {
+	font-weight:bold;
+	font-size:1.4em;
+	font-family: Open Sans;
+}
+
+.img-company-opp {
+	height: 40px;
+	width: 40px;
+}
+
+/*-----------------------end_listOpportunities*/
+
+/*-----------------------meetTheTeam*/
+ /* Three columns side by side */
+h1.h1MeetTeam{
+    font-size:4.5em;
+}
+
+p.pMeetTeam{
+ font-weight:400;
+ font-size:3em;   
+}
+
+.img-quadrata {
+       border-radius:50%;
+       width:250px;
+       height:250px;
+}
+
+h3.h3MeetTeam{
+    	font-weight:800;
+        color:#f0ad4e;
+        font-size:2em;	
+}
+small.smallMeetTeam{
+		text-align:center;
+        font-size:0.7em; 
+        text-decoration:underline;
+        color:gray;
+}
+/*-----------------------end_meetTheTeam*/
+
+/*-----------------------landingPage*/
+.header {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 700px;
+    background: url(../images/landing_img.jpg) no-repeat center center scroll;
+    /*width: 70%;
+    height: 400px;
+    background-color: lightblue;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.text-vertical-center {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}
+
+.text-vertical-center h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 4.5em;
+    font-weight: 700;
+}
+
+.text-vertical-center h3 {
+    font-size: 2.5em;
+}
+
+/* Custom Button Styles */
+
+.btn-dark {
+    border-radius: 0;
+    color: white;
+    background-color: #ff800f;
+    margin: 2px;
+    font-family: Open Sans;
+}
+
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active {
+    color: white;
+    background-color: rgba(255,165,0, 0.8);
+}
+/*-----------------------end_landingPage*/
+
+/*-----------------------menuFlags*/
+.icon-small
+{
+    height:18px;
+    margin:0;
+	padding:0;
+}
+
+.icon-medium
+{
+    height:22px;
+	margin:0;
+	padding:0;
+}
+/*-----------------------end_menuFlags*/
+
+/*-----------------------socialNetworkIcons*/
+.social-network-icon li i {
+	font-size:24px;
+}
+
+.social-network-icon li i.icoLinkedin {
+	color:#007bb7;
+}
+
+.social-network-icon li i.icoFacebook {
+	color:#3B5998;
+}
+
+/*-----------------------end_socialNetworkIcons*/

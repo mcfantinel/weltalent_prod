@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include Templates/head.ejs%>
+</head>
+
+<body>
+
+<br />
+
+<!-- Insert Body here -->
+<div class="container">
+
+		<div class="col-sm-6 col-sm-offset-3">
+		
+			<div align="center">
+				<% if (opportunity.oppCode) { %>
+					<h1 class="form_title"><%= __('apply_to') %></h1>
+					<h2 class="form_title"><%= opportunity.jobTitle %> <%= __('at') %> <%= opportunity.company %></h2>
+				<% } else { %>
+					<h1 class="form_title"><%= __('leave_cv') %></h1>
+					<h4 class="form_title"><%= __('leave_cv_contact') %></h4>
+				<% } %>
+			</div>
+		
+			<!-- show any messages that come back with authentication -->
+			<% if (message.length > 0) { %>
+				<div class="alert alert-danger"><%- message %></div>
+			<% } %>
+		
+			<!-- LOGIN FORM -->
+			<form id="applyToOpp" action="/applyToOpp" method="post" encType="multipart/form-data">
+				<input id="oppCode" type="hidden" name="oppCode" value="">
+				<input type="hidden" name="jobTitle" value="<%= opportunity.jobTitle %>">
+				<input type="hidden" name="company" value="<%= opportunity.company %>">
+				<div class="form-buttons">
+					<button type="submit" class="btn btn-warning btn-lg"><%= __('apply') %></button>
+				</div>
+				<div class="form-group">
+					<label class="form_label"><%= __('applicants_name') %></label>
+					<input type="text" class="form-control" name="applicantsName">
+				</div>
+				<div class="form-group">
+					<label class="form_label"><%= __('email_address') %></label>
+					<input type="text" class="form-control" name="email">
+				</div>
+				<div class="form-group">
+					<label class="form_label"><%= __('nationality') %></label>
+					<input type="text" class="form-control" name="nationality">
+				</div>
+
+				<div class="form-group text-center">
+					<label class="btn btn-info btn-lg" for="appCurriculum">
+          					<span class="glyphicon glyphicon-upload"></span>
+          					<p><%= __('upload_cv') %></p>
+						    <input id="appCurriculum" type="file" style="display:none" name="appCurriculum"
+						    	onchange="$('#upload-appCurriculum').val(this.files[0].name)">
+					</label>
+					<input type="text" class="form-control" id="upload-appCurriculum" name="appCurriculumText" readonly="readonly">	
+				</div>
+			</form>
+		
+		</div>
+
+</div><!-- /.container -->
+</body>
+</html>
+
+<script>
+<% if (opportunity.oppCode) { %>
+	v_oppCode = <%- JSON.stringify(opportunity.oppCode) %> || '';
+	$('#oppCode').val(v_oppCode);
+<% } %>
+
+$(document).ready(function(){
+	$('#applyToOpp').validate({ // initialize the plugin
+        rules: {
+        	applicantsName: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            nationality: {
+                required: true
+            },
+            appCurriculumText: {
+                required: true,
+                extension: "pdf"
+            },
+            appCurriculum: {
+            	filesize: 1
+            }
+        },
+        errorElement: "em",
+		errorPlacement: function ( error, element ) {
+			// Add the `help-block` class to the error element
+			error.addClass( "help-block" );
+
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else {
+				error.insertAfter( element );
+			}
+		},
+		highlight: function ( element, errorClass, validClass ) {
+			$( element ).parents( ".col-sm-6" ).addClass( "has-error" ).removeClass( "has-success" );
+		},
+		unhighlight: function (element, errorClass, validClass) {
+			$( element ).parents( ".col-sm-6" ).addClass( "has-success" ).removeClass( "has-error" );
+		}
+    });
+});
+</script>

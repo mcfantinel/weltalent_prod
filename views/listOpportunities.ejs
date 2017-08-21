@@ -1,0 +1,51 @@
+<div class="col-sm-14 col-centered">
+
+	<div class="row">
+        <div class="input-group col-md-6 col-centered">
+            <input type="text" class="form-control input-lg" id="serchString" placeholder="<%= __('search') %>" />
+            <span class="input-group-btn">
+                <button id="searchOppBtn" class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+	</div>
+	<br />
+	
+	<% for (var i = 0; i < opportunities.length; i++) { %>	
+	<div class="col-md-4 column productbox">
+	    <a href="#" onclick="oppClick(<%= opportunities[i].code %>)"><img src="images/<%= opportunities[i].opportunityPicture %>" class="img-responsive"></a>
+	    <div class="producttitle"><%= opportunities[i].jobTitle %></div>
+	    <div class="productprice"><div class="pull-right"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= opportunities[i].jobLocation %></div><div class="pricetext"><img class="img-company-opp" src="images/<%= opportunities[i].companyLogo %>" /> <%= opportunities[i].company %></div></div>
+	</div>
+	
+	<% } %>
+	
+	<br />
+	
+</div>
+
+<script>
+
+function oppClick(code) {
+    window.location = '/viewOpportunity?oppCode=' + code;
+}
+
+
+
+$(document).ready(function(){
+
+	$("#searchOppBtn").click(function() {
+	    var v_SearchString = $("#serchString").val();
+	    window.location = '/listOpportunities?searchString=' + v_SearchString;
+	});
+	
+	$('#serchString').keypress(function(e){
+        if(e.which == 13){
+            $('#searchOppBtn').click();
+        }
+	});
+
+});
+
+</script>
